@@ -8,11 +8,15 @@
  * D1 and D2 are blinked by configuring port P1 as a GPIO and toggling P1.0 and P1.6 at different time intervals.
  *
  */
+
+int multipleBlinkG2(void);
+
 int multipleBlinkG2(void)
 {
   WDTCTL = WDTPW + WDTHOLD;                 // Stop watchdog timer
   P1SEL = 0;                                // configures P1 for GPIO
-  P1DIR |= 0x41; // 0b0100_0001             // Set P1.0 and P1.6 to output direction
+  P1DIR |= 0x41; // 0b0100_0001             // Sets P1.0 and P1.6 to output direction
+  P1OUT |= 0x41; // 0b0100_0001             // Initially sets P1.0 and P1.6 both to 1
   while(1)                                  // Infinite loop
   {
       P1OUT ^= 0x41; // 0b0100_0001         // Toggle BIT0 and BIT6
