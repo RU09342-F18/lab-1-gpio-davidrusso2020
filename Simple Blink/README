@@ -1,0 +1,10 @@
+The Simple Blink is a program that blinks two LEDs syncronously and indefinitely.
+
+The Simple Blink is implemented on two different development boards:
+1. MSP430G2553
+2. MSP420F5529
+
+First, the general design of the implementation will be discussed. Then, the specific implementations on each board are discussed.
+
+General Design
+____________________________________________________________________________________________________
