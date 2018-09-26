@@ -15,20 +15,27 @@ First, the general design of the implementation will be discussed. Then, the spe
 GENERAL DESIGN
 --------------
 
-Stuff Here
+In order to execute this program:
+- the certain pins on each processor are routed to LEDs on the development board
+- the pins of interest need to be configured as GPIO
+- the direction of the pins need to be configured as outputs
+- the output of the pins need to be preset to a certain value
+- in an infinite loop, the pins need to toggle states with a delay
 
 ***************************************************************************************************************************************
 MSP430G2553 IMPLEMENTATION
 --------------------------
 
-Stuff Here
-
+- P1.0 and P1.6 are the pins tied to the LEDs on the development board
+- P1SEL is set to 0, allocating all 8-bits of port 1 as GPIO
+- Bits 0 and 6 of P1DIR are set high, configuring P1.0 and P1.6 as outputs
 
 ***************************************************************************************************************************************
 MSP430F5529 IMPLEMENTATION
 --------------------------
 
-Stuff Here
-
+- P1.0 and P2.7 are the pins tied to the LEDs on the development board
+- P1SEL and P2SEL are set to 0, allocating all 8-bits of port 1 and port 2 as GPIO
+- Bit 0 of P1DIR and bit 7 of P2DIR are set high, configuring P1.0 and P2.7 as outputs
 
 ***************************************************************************************************************************************
