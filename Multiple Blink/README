@@ -4,31 +4,41 @@ OVERVIEW
 
 The Multiple Blink is a program that blinks two LEDs asychronously and indefinitely.
 
-The Simple Blink is implemented on two different development boards:
+The Mulitple Blink program is implemented on two different development boards:
 1. MSP430G2553
 2. MSP430FR2311
 
 First, the general design of the implementation will be discussed. Then, the specific implementations on each board are discussed.
 
-
 ***************************************************************************************************************************************
 GENERAL DESIGN
 --------------
 
-Stuff Here
+In order to execute this program:
+- the certain pins on each processor are routed to LEDs on the development board
+- the pins of interest need to be configured as GPIO
+- the direction of the pins need to be configured as outputs
+- the output of the pins need to be preset to a certain value
+- in an infinite loop, the pins need to toggle states each with a different delay
 
 ***************************************************************************************************************************************
 MSP430G2553 IMPLEMENTATION
 --------------------------
 
-Stuff Here
-
+- P1.0 and P2.0 are the pins tied to the LEDs on the development board
+- P1SEL is set to 0, allocating all 8-bits of port 1 as GPIO
+- Bits 0 and 6 of P1DIR are set high, configuring P1.0 and P1.6 as outputs
+- using a for-loop, counter i is incremented and modulus arithmetic is used to delay the toggling at different invervals
 
 ***************************************************************************************************************************************
 MSP430FR2311 IMPLEMENTATION
---------------------------
+---------------------------
 
-Stuff Here
-
+- PM5CTL0 &= ~LOCKLPM5; is necessary to unlock the ports to allow for GPIO interface
+- P1.0 and P2.7 are the pins tied to the LEDs on the development board
+- Bit 0 of both P1SEL0 and P1SEL1 is set low, allocating P1.0 as GPIO
+- Bit 0 of both P2SEL0 and P2SEL1 is set low, allocating P2.0 as GPIO
+- Bit 0 of both P1DIR and P2DIR are set high, configuring P1.0 and P2.0 as outputs
+- Two counter integers are declared outside the infinite loop to keep track of the different delays
 
 ***************************************************************************************************************************************
