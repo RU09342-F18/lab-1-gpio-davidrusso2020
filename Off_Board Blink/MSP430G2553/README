@@ -1,1 +1,33 @@
-Off board blink
+***************************************************************************************************************************************
+OVERVIEW
+--------
+
+The Off-Board Blink uses the Multiple Blink code on the MSP430G2553 and is placed in a breadboard to light up LEDs
+
+First, the MSP430G2553 Pinout is shown. Then, the circuit design is discussed.
+
+***************************************************************************************************************************************
+MSP430G2553 PINOUT FOR PINS USED
+--------------------------------
+
+| Pin No. | Port | Description        |
+|         |      |                    |
+| 1       | NA   | Vcc                |
+| 2       | P1.0 | Feeds to Green LED |
+| 14      | P1.6 | Feeds to Red LED   |
+| 16      | ~RST | Feeds to Button    |
+| 20      | NA   | Vss                |
+
+***************************************************************************************************************************************
+CIRCUIT DESIGN
+--------------
+
+In order to execute this program:
+- pin 1 is tied to Vcc (3.3 V), pin 20 is tied to Vss (0 V)
+- pin 2 connects to a green LED through a 220 Ohm resistor. The green LED is connected to Ground
+- pin 14 connects to a red LED through a 220 Ohm resistor. The red LED is connected to Ground
+- pin 16 is connected to a button, which is connected to ground
+- to account for floating, a 50 kOhm resistor pulls up from pin 14 to Vcc (3.3 V) and a .022 uF capacitor is placed in parallel
+- note: the code must be programmed onto the MSP430G2553 IC before it is placed into the breadboard
+
+***************************************************************************************************************************************
