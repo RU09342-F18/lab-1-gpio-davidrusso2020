@@ -29,59 +29,27 @@ MSP430G2553 IMPLEMENTATION
 --------------------------
 
 - P1.0 and P2.0 are the pins tied to the LEDs on the development board
+- P1.3 is the pin tied to a button
 - P1SEL is set to 0, allocating all 8-bits of port 1 as GPIO
 - Bits 0 and 6 of P1DIR are set high, configuring P1.0 and P1.6 as outputs
-- using a for-loop, counter i is incremented and modulus arithmetic is used to delay the toggling at different invervals
+- Bit 3 of P1DIR is set low, configuring P1.3 as an input
+- Bit 3 of P1REN is set high, enabling a resistor at P1.3
+- Bits 0 and 6 of P1OUT are set high, presetting P1.0 and P1.6 high 
+- Bit 3 of P1OUT is set high, configuring the resistor as a pull-up resistor
+- in an infinant loop, an if statement is used to check if the button is pressed or not, toggling each LED as necessary
 
 ***************************************************************************************************************************************
 MSP432P401R IMPLEMENTATION
 --------------------------
 
-Stuff Here
-
-
-***************************************************************************************************************************************
-***************************************************************************************************************************************
-OVERVIEW
---------
-
-The Multiple Blink is a program that blinks two LEDs asychronously and indefinitely.
-
-The Mulitple Blink program is implemented on two different development boards:
-1. MSP430G2553
-2. MSP430FR2311
-
-First, the general design of the implementation will be discussed. Then, the specific implementations on each board are discussed.
-
-***************************************************************************************************************************************
-GENERAL DESIGN
---------------
-
-In order to execute this program:
-- the certain pins on each processor are routed to LEDs on the development board
-- the pins of interest need to be configured as GPIO
-- the direction of the pins need to be configured as outputs
-- the output of the pins need to be preset to a certain value
-- in an infinite loop, the pins need to toggle states each with a different delay
-
-***************************************************************************************************************************************
-MSP430G2553 IMPLEMENTATION
---------------------------
-
-- P1.0 and P2.0 are the pins tied to the LEDs on the development board
-- P1SEL is set to 0, allocating all 8-bits of port 1 as GPIO
-- Bits 0 and 6 of P1DIR are set high, configuring P1.0 and P1.6 as outputs
-- using a for-loop, counter i is incremented and modulus arithmetic is used to delay the toggling at different invervals
-
-***************************************************************************************************************************************
-MSP430FR2311 IMPLEMENTATION
----------------------------
-
-- PM5CTL0 &= ~LOCKLPM5; is necessary to unlock the ports to allow for GPIO interface
-- P1.0 and P2.7 are the pins tied to the LEDs on the development board
-- Bit 0 of both P1SEL0 and P1SEL1 is set low, allocating P1.0 as GPIO
-- Bit 0 of both P2SEL0 and P2SEL1 is set low, allocating P2.0 as GPIO
-- Bit 0 of both P1DIR and P2DIR are set high, configuring P1.0 and P2.0 as outputs
-- Two counter integers are declared outside the infinite loop to keep track of the different delays
+- P2.0 and P2.2 are the pins tied to the LEDs on the development board
+- P1.1 is the pin tied to a button
+- Bits 1 and 2 of both P2SEL0 and P2SEL1 are set to 0, allocating P2.1 and P2.2 as GPIO
+- Bit 1 of both P1SEL0 and P2SEL1 is set to 0, allocating P1.1 as GPIO
+- Bits 1 and 2 of P2DIR are set high, configuring P2.1 and P2.2 as outputs
+- Bit 1 of P1DIR is set low, configuring P1.1 as an input
+- Bit 3 of both P1REN and P1OUT is set high, enabling a pull-up resistor at P1.3
+- Bits 1 and 2 of P2OUT are set high, presetting P2.1 and P2.2 high 
+- in an infinant loop, an if statement is used to check if the button is pressed or not, toggling each LED as necessary
 
 ***************************************************************************************************************************************
