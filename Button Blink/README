@@ -1,9 +1,9 @@
-THIS README IS STILL A WORK IN PROGRESS
+
 ***************************************************************************************************************************************
 OVERVIEW
 --------
 
-The Button Blink is a program that blinks two LEDs syncronously and indefinitely.
+The Button Blink is a program that blinks two LEDs indefinitely, one when a button is pressed and another when it is not pressed.
 
 The Simple Blink is implemented on two different development boards:
 1. MSP430G2553
@@ -16,18 +16,22 @@ GENERAL DESIGN
 --------------
 
 In order to execute this program:
-- the certain pins on each processor are routed to LEDs on the development board
+- certain pins on each processor are routed to LEDs and certain pins to buttons on the development board
 - the pins of interest need to be configured as GPIO
-- the direction of the pins need to be configured as outputs
+- the direction of the pins routed to LEDs need to be configured as outputs
+- the direction of the pin routed to a button needs to be configured as an input
+- pull up resistors need to be enabled on the output to ensure the circuit does not float when the button is not pressed
 - the output of the pins need to be preset to a certain value
-- in an infinite loop, the pins need to toggle states each with a different delay
+- in an infinite loop, an if statement determines which LED is off and which one toggles based on the state of the button
 
 ***************************************************************************************************************************************
 MSP430G2553 IMPLEMENTATION
 --------------------------
 
-Stuff Here
-
+- P1.0 and P2.0 are the pins tied to the LEDs on the development board
+- P1SEL is set to 0, allocating all 8-bits of port 1 as GPIO
+- Bits 0 and 6 of P1DIR are set high, configuring P1.0 and P1.6 as outputs
+- using a for-loop, counter i is incremented and modulus arithmetic is used to delay the toggling at different invervals
 
 ***************************************************************************************************************************************
 MSP432P401R IMPLEMENTATION
