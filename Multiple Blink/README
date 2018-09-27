@@ -25,7 +25,7 @@ In order to execute this program:
 MSP430G2553 IMPLEMENTATION
 --------------------------
 
-- P1.0 and P2.0 are the pins tied to the LEDs on the development board
+- P1.0 and P1.6 are the pins tied to the LEDs on the development board
 - P1SEL is set to 0, allocating all 8-bits of port 1 as GPIO
 - Bits 0 and 6 of P1DIR are set high, configuring P1.0 and P1.6 as outputs
 - using a for-loop, counter i is incremented and modulus arithmetic is used to delay the toggling at different invervals
@@ -35,7 +35,7 @@ MSP430FR2311 IMPLEMENTATION
 ---------------------------
 
 - PM5CTL0 &= ~LOCKLPM5; is necessary to unlock the ports to allow for GPIO interface
-- P1.0 and P2.7 are the pins tied to the LEDs on the development board
+- P1.0 and P2.0 are the pins tied to the LEDs on the development board
 - Bit 0 of both P1SEL0 and P1SEL1 is set low, allocating P1.0 as GPIO
 - Bit 0 of both P2SEL0 and P2SEL1 is set low, allocating P2.0 as GPIO
 - Bit 0 of both P1DIR and P2DIR are set high, configuring P1.0 and P2.0 as outputs
